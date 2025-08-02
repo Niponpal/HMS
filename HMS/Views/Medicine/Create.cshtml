@@ -1,0 +1,121 @@
+﻿@model Medicine
+<div class="container mt-4">
+    <h2 class="mb-4">Add New Medicine</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                <label asp-for="MedicineName" class="form-label">Medicine Name</label>
+                <input asp-for="MedicineName" class="form-control" />
+                <span asp-validation-for="MedicineName" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Manufacturer" class="form-label">Manufacturer</label>
+                <input asp-for="Manufacturer" class="form-control" />
+                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="BatchNumber" class="form-label">Batch Number</label>
+                <input asp-for="BatchNumber" class="form-control" />
+                <span asp-validation-for="BatchNumber" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="ExpiryDate" class="form-label">Expiry Date</label>
+                <input asp-for="ExpiryDate" type="date" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="StockQuantity" class="form-label">Stock Quantity</label>
+                <input asp-for="StockQuantity" class="form-control" />
+                <span asp-validation-for="StockQuantity" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="PricePerUnit" class="form-label">Price Per Unit</label>
+                <input asp-for="PricePerUnit" class="form-control" />
+                <span asp-validation-for="PricePerUnit" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="AddedDate" class="form-label">Added Date</label>
+                <input asp-for="AddedDate" type="date" class="form-control" />
+                <span asp-validation-for="AddedDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Category" class="form-label">Category</label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="ImagePath" class="form-label">Category</label>
+                <input asp-for="ImagePath" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Upload Image</label>
+                <input type="file" name="imageFile" class="form-control" id="featuredImageUpload" />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Description" class="form-label">Description / Warnings</label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="UsageInstructions" class="form-label">Usage Instructions</label>
+                <textarea asp-for="UsageInstructions" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="UsageInstructions" class="text-danger"></span>
+            </div>
+
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        let featureUploadElement = document.getElementById("featuredImageUpload");
+        let FeaturedImageUrlElement = document.getElementById("ImagePath");
+
+        async function featureImageUpload(e) {
+          let file = e.target.files[0];
+          if (!file) return;
+
+          let data = new FormData();
+          data.append("file", file);
+
+          fetch("/api/images", {
+            method: "POST",
+            headers: {
+              "Accept": "*/*"
+            },
+            body: data
+          })
+          .then(res => res.json())
+          .then(result => {
+            console.log(result);
+            FeaturedImageUrlElement.value = result.link;  // Correct usage here
+          })
+          .catch(err => {
+            console.error("Upload error:", err);
+            alert("Image upload failed. Please try again.");
+          });
+        }
+
+        featureUploadElement.addEventListener("change", featureImageUpload);
+    </script>
+}

@@ -1,0 +1,56 @@
+﻿@model List<LabTest>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Lab Test Records</h2>
+        <a asp-action="Create" class="btn btn-success">+ Add New Test</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover shadow-sm align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Test Name</th>
+                    <th>Test Date</th>
+                    <th>Test Result</th>
+                    <th>Status</th>
+                    <th>Test Fee</th>
+                    <th>Notes</th>
+                    <th>Created At</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var test in Model)
+                {
+                    <tr>
+                        <td>@test.Id</td>
+                        <td>@test.TestName</td>
+                        <td>@test.TestDate.ToString("yyyy-MM-dd")</td>
+                        <td>@test.TestResult</td>
+                        <td>@test.Status</td>
+                        <td>@test.TestFee.ToString("C")</td>
+                        <td>@test.Notes</td>
+                        <td>@test.CreatedAt.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <img src="@Url.Content(test.ImagePath ?? "~/images/noimage.png")"
+                                 alt="Report Image"
+                                 class="img-thumbnail"
+                                 style="max-height: 60px;" />
+                        </td>
+                        <td>@test.Description</td>
+                        <td class="text-center">
+                            <a asp-action="Details" asp-route-id="@test.Id" class="btn btn-sm btn-info me-1">View</a>
+                            <a asp-action="Edit" asp-route-id="@test.Id" class="btn btn-sm btn-warning me-1">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@test.Id" method="post" style="display:inline;" onsubmit="return confirm('Are you sure to delete this test?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model List<Appointment>
+
+    <h2>Appointment List</h2>
+
+    <table class=" table table-bordered ">
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>AppointmentDate</th>
+            <th>TimeSlot</th>
+            <th>AppointmentStatus</th>
+            <th>Symptoms</th>
+            <th>Notes</th>
+            <th>CreatedAt</th>
+            <th>CompletedAt</th>
+            <th>Description</th>
+            <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.AppointmentDate</td>
+                <td>@item.TimeSlot</td>
+                <td>@item.AppointmentStatus</td>
+                <td>@item.Symptoms</td>
+                <td>@item.Notes</td>
+                <td>@item.CreatedAt</td>
+                <td>@item.CompletedAt</td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info me-1">Details</a>
+                    <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure you want to Delete')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>

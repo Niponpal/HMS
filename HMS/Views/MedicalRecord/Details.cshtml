@@ -1,0 +1,75 @@
+﻿@model MedicalRecord
+
+
+<h2 class="mb-4">Medical Record Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Record Date:</strong>
+                <p>@Model.RecordDate.ToShortDateString()</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Created At:</strong>
+                <p>@Model.CreatedAt.ToString("g")</p>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Symptoms:</strong>
+                <p>@Model.Symptoms</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Diagnosis:</strong>
+                <p>@Model.Diagnosis</p>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Prescription:</strong>
+                <p>@Model.Prescription</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Notes:</strong>
+                <p>@Model.Notes</p>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Test Results:</strong>
+                <p>@Model.TestResults</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Next Visit Suggestion:</strong>
+                <p>@Model.NextVisitSuggestion</p>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Description:</strong>
+                <p>@Model.Description</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Image:</strong><br />
+                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                {
+                    <img src="@Model.ImagePath" alt="Medical Record Image" class="img-thumbnail mt-2" style="max-width: 250px;" />
+                }
+                else
+                {
+                    <p>No image available.</p>
+                }
+            </div>
+        </div>
+
+        <div class="text-end mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+        </div>
+    </div>
+</div>
