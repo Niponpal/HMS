@@ -1,0 +1,106 @@
+﻿@model HospitalRoom
+
+<h2 class="mb-3 mx-4">Edit Hospital Room</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data" class="mx-4">
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="RoomNumber" class="form-label"></label>
+            <input asp-for="RoomNumber" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="RoomType" class="form-label"></label>
+            <input asp-for="RoomType" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="IsAvailable" class="form-label"></label>
+            <select asp-for="IsAvailable" class="form-select">
+                <option value="true">----</option>
+                <option value="true">Available</option>
+                <option value="false">Not Available</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="RoomChargesPerDay" class="form-label">Charges Per Day</label>
+            <input asp-for="RoomChargesPerDay" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="Floor" class="form-label"></label>
+            <input asp-for="Floor" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="Capacity" class="form-label"></label>
+            <input asp-for="Capacity" class="form-control" type="number" min="0" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="OccupiedBeds" class="form-label">Occupied Beds</label>
+            <input asp-for="OccupiedBeds" class="form-control" type="number" min="0" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for=LastUpdated class="form-label"></label>
+            <input asp-for="LastUpdated" class="form-control" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="ImagePath" class="form-label"></label>
+            <input asp-for="ImagePath" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Images</label>
+            <input class="form-control" type="file" />
+        </div>
+
+        <div col-md-12 mb-3">
+            <label asp-for="Description" class="form-label">Room Description</label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save Room</button>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <script>
+        let featureUploadElement = document.getElementById("featuredImageUpload");
+        let FeaturedImageUrlElement = document.getElementById("ImagePath");
+
+        async function featureImageUpload(e) {
+          let file = e.target.files[0];
+          if (!file) return;
+
+          let data = new FormData();
+          data.append("file", file);
+
+          fetch("/api/images", {
+            method: "POST",
+            headers: {
+              "Accept": "*/*"
+            },
+            body: data
+          })
+          .then(res => res.json())
+          .then(result => {
+            console.log(result);
+            FeaturedImageUrlElement.value = result.link;  // Correct usage here
+          })
+          .catch(err => {
+            console.error("Upload error:", err);
+            alert("Image upload failed. Please try again.");
+          });
+        }
+
+        featureUploadElement.addEventListener("change", featureImageUpload);
+    </script>
+}

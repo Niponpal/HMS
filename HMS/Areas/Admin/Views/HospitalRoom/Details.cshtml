@@ -1,0 +1,86 @@
+﻿@model HospitalRoom
+
+
+<h3 class="mb-4 mx-4">Hospital Room Details</h3>
+
+<div class="card shadow-sm mx-4">
+    <div class="row g-0">
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.ImagePath))
+            {
+                <img src="@Url.Content(Model.ImagePath)" class="img-fluid rounded-start" alt="Room Image" />
+            }
+            else
+            {
+                <div class="d-flex align-items-center justify-content-center bg-light text-muted" style="height: 100%; min-height: 250px;">
+                    No Image Available
+                </div>
+            }
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Room Number:</div>
+                    <div class="col-sm-8">@Model.RoomNumber</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Room Type:</div>
+                    <div class="col-sm-8">@Model.RoomType</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Floor:</div>
+                    <div class="col-sm-8">@Model.Floor</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Capacity:</div>
+                    <div class="col-sm-8">@Model.Capacity</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Occupied Beds:</div>
+                    <div class="col-sm-8">@Model.OccupiedBeds</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Availability:</div>
+                    <div class="col-sm-8">
+                        @if (Model.IsAvailable)
+                        {
+                            <span class="badge bg-success">Available</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Not Available</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Charges Per Day:</div>
+                    <div class="col-sm-8">@Model.RoomChargesPerDay.ToString("C")</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Last Updated:</div>
+                    <div class="col-sm-8">@Model.LastUpdated.ToString("f")</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-4 fw-bold">Description:</div>
+                    <div class="col-sm-8">@Model.Description</div>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-between">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

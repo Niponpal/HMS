@@ -1,0 +1,173 @@
+﻿@model List<Medicine>
+
+<div class="card">
+    <div class="card-header">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add Medicine
+        </a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>MedicineName</th>
+                    <th>Manufacturer</th>
+                    <th>BatchNumber</th>
+                    <th>ExpiryDate</th>
+                    <th>StockQuantity</th>
+                    <th>PricePerUnit</th>
+                    <th>UsageInstructions</th>
+                    <th>AddedDate</th>
+                    <th>Category</th>
+                    <th>ImagePath</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.MedicineName</td>
+                        <td>@item.Manufacturer</td>
+                        <td>@item.BatchNumber</td>
+                        <td>@item.ExpiryDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.StockQuantity</td>
+                        <td>@item.PricePerUnit.ToString("C")</td>
+                        <td>@item.UsageInstructions</td>
+                        <td>@item.AddedDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Category</td>
+                        <td>
+                            <img src="@Url.Content(item.ImagePath ?? "~/images/noimage.png")" width="60" height="60" class="rounded border" />
+                        </td>
+                        <td>@item.Description</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Are you sure to delete this item?');" class="d-inline">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="13" class="text-center text-muted">No medicines available.</td>
+                </tr>
+            }
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+
+@section Scripts {
+    <script>
+        $(function () {
+          $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+          });
+        });
+    </script>
+}
+
+
+
+
+@* 
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>All Medicine Information</h2>
+        <a asp-action="Create" class="btn btn-success">+ Add Medicine</a>
+    </div>
+
+    <table class="table table-bordered table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>MedicineName</th>
+                <th>Manufacturer</th>
+                <th>BatchNumber</th>
+                <th>ExpiryDate</th>
+                <th>StockQuantity</th>
+                <th>PricePerUnit</th>
+                <th>UsageInstructions</th>
+                <th>AddedDate</th>
+                <th>Category</th>
+                <th>ImagePath</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.MedicineName</td>
+                        <td>@item.Manufacturer</td>
+                        <td>@item.BatchNumber</td>
+                        <td>@item.ExpiryDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.StockQuantity</td>
+                        <td>@item.PricePerUnit.ToString("C")</td>
+                        <td>@item.UsageInstructions</td>
+                        <td>@item.AddedDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Category</td>
+                        <td>
+                            <img src="@Url.Content(item.ImagePath ?? "~/images/noimage.png")" width="60" height="60" class="rounded border" />
+                        </td>
+                        <td>@item.Description</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Are you sure to delete this item?');" class="d-inline">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="13" class="text-center text-muted">No medicines available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+ *@
