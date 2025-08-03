@@ -1,0 +1,73 @@
+﻿@model Appointment
+
+
+<h2 class="mb-4 mx-4 text-center">Book an Appointment</h2>
+
+<form asp-action="Edit" method="post" class="needs-validation mx-4" novalidate>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="AppointmentDate" class="form-label">Appointment Date</label>
+            <input asp-for="AppointmentDate" class="form-control" type="date" />
+            <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="TimeSlot" class="form-label">Time Slot</label>
+            <input asp-for="TimeSlot" class="form-control" placeholder="e.g. 10:00 AM - 11:00 AM" />
+            <span asp-validation-for="TimeSlot" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="AppointmentStatus" class="form-label">Status</label>
+            <select asp-for="AppointmentStatus" class="form-select">
+                <option value="">-- Select Status --</option>
+                <option>Pending</option>
+                <option>Confirmed</option>
+                <option>Cancelled</option>
+                <option>Completed</option>
+            </select>
+            <span asp-validation-for="AppointmentStatus" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="Symptoms" class="form-label">Symptoms</label>
+            <input asp-for="Symptoms" class="form-control" placeholder="Describe your symptoms" />
+            <span asp-validation-for="Symptoms" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label asp-for="Notes" class="form-label">Doctor Notes</label>
+            <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Internal use only..."></textarea>
+            <span asp-validation-for="Notes" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="CreatedAt" class="form-label">Created At</label>
+            <input asp-for="CreatedAt" class="form-control" type="datetime-local" />
+            <span asp-validation-for="CreatedAt" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="CompletedAt" class="form-label">Completed At</label>
+            <input asp-for="CompletedAt" class="form-control" type="datetime-local" />
+            <span asp-validation-for="CompletedAt" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label asp-for="Description" class="form-label">Additional Description</label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Any other relevant information..."></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-primary px-4">Submit Appointment</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

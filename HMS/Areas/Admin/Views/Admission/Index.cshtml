@@ -1,0 +1,142 @@
+﻿@model List<Admission>
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add New Admission
+        </a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Admit Date</th>
+                    <th>Discharge Date</th>
+                    <th>Diagnosis</th>
+                    <th>Treatment Plan</th>
+                    <th>Advance Payment</th>
+                    <th>Discharge Status</th>
+                    <th>Doctor Remarks</th>
+                    <th>Created At</th>
+                    <th>Report</th>
+                    <th>Description</th>
+                    <th style="width: 180px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.AdmitDate.ToShortDateString()</td>
+                        <td>@(item.DischargeDate?.ToShortDateString() ?? "N/A")</td>
+                        <td>@item.Diagnosis</td>
+                        <td>@item.TreatmentPlan</td>
+                        <td>@item.AdvancePayment.ToString("C")</td>
+                        <td>@item.DischargeStatus</td>
+                        <td>@item.DoctorRemarks</td>
+                        <td>@item.CreatedAt.ToString("g")</td>
+                        <td>@item.ImagePath</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <div class="btn-group">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }    
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+
+@section Scripts {
+    <script>
+        $(function () {
+          $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+          });
+        });
+    </script>
+}
+
+@* <h2 class="mb-4">Admission Records</h2>
+
+<div class="text-end mb-3">
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Add New Admission
+    </a>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Admit Date</th>
+            <th>Discharge Date</th>
+            <th>Diagnosis</th>
+            <th>Treatment Plan</th>
+            <th>Advance Payment</th>
+            <th>Discharge Status</th>
+            <th>Doctor Remarks</th>
+            <th>Created At</th>
+            <th>Report</th>
+            <th>Description</th>
+            <th style="width: 180px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.AdmitDate.ToShortDateString()</td>
+                <td>@(item.DischargeDate?.ToShortDateString() ?? "N/A")</td>
+                <td>@item.Diagnosis</td>
+                <td>@item.TreatmentPlan</td>
+                <td>@item.AdvancePayment.ToString("C")</td>
+                <td>@item.DischargeStatus</td>
+                <td>@item.DoctorRemarks</td>
+                <td>@item.CreatedAt.ToString("g")</td>
+                <td>@item.ImagePath</td>
+                <td>@item.Description</td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> *@

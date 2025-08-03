@@ -30,6 +30,12 @@
     <!-- summernote -->
     <link rel="stylesheet" href="~/Adminlte/plugins/summernote/summernote-bs4.min.css">
 
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/Adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
    <div class="wrapper">
@@ -265,17 +271,18 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                 <a asp-action="Index" asp-area="Admin" asp-controller="Admission" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                    <p>Admission</p>
                 </a>
               </li>
+              
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
+                <a asp-action="Index" asp-area="Admin" asp-controller="Appointment" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Appointment</p>
                 </a>
-              </li>
+               </li>
               <li class="nav-item">
                 <a href="pages/layout/boxed.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -289,8 +296,6 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-
-
 
 
         <div class="content-wrapper">
@@ -313,8 +318,6 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-
-
 
    </div>
 
@@ -358,6 +361,21 @@
     <script src="~/Adminlte/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/Adminlte/js/pages/dashboard.js"></script>
+
+
+    <!-- DataTables  & Plugins -->
+    <script src="~/Adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Adminlte/plugins/jszip/jszip.min.js"></script>
+    <script src="~/Adminlte/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/Adminlte/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/Adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
