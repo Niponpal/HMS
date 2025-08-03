@@ -51,15 +51,15 @@
         </div>
 
         <div class="col-md-6 mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <label asp-for="Description" class="form-label" ></label>
+            <textarea asp-for="Description" class="form-control" rows="3" id="content"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
 
         <div class="col-md-6 mb-3">
             <label asp-for="DoctorRemarks" class="form-label"></label>
-            <textarea asp-for="DoctorRemarks" class="form-control" rows="3"></textarea>
+            <textarea asp-for="DoctorRemarks" class="form-control" rows="3" id="content"></textarea>
             <span asp-validation-for="DoctorRemarks" class="text-danger"></span>
         </div>
 
@@ -75,6 +75,7 @@
 
 @section Scripts {
     <script>
+            let editor = new FroalaEditor("#content");
         let featureUploadElement = document.getElementById("featuredImageUpload");
         let FeaturedImageUrlElement = document.getElementById("ImagePath");
 

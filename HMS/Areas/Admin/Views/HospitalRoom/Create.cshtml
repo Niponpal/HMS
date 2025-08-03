@@ -61,7 +61,7 @@
 
 <div col-md-12 mb-3">
      <label asp-for="Description" class="form-label">Room Description</label>
-     <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <textarea asp-for="Description" class="form-control" rows="3" id="content"></textarea>
   </div>
 
       <div class="col-12 d-flex justify-content-between mt-4">
@@ -74,6 +74,7 @@
 
 @section Scripts {
     <script>
+         let editor = new FroalaEditor("#content");
         let featureUploadElement = document.getElementById("featuredImageUpload");
         let FeaturedImageUrlElement = document.getElementById("ImagePath");
 

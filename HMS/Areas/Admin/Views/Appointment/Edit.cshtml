@@ -55,7 +55,7 @@
 
         <div class="col-md-12 mb-3">
             <label asp-for="Description" class="form-label">Additional Description</label>
-            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Any other relevant information..."></textarea>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Any other relevant information..." id="content"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
@@ -69,5 +69,8 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        let editor = new FroalaEditor("#content");
+    </script>
 }
 

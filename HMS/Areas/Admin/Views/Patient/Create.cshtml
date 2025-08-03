@@ -70,8 +70,8 @@
         </div>
 
         <div class="col-md-12 mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control"></textarea>
+            <label asp-for="Description" class="form-label" ></label>
+            <textarea asp-for="Description" class="form-control" id="content"></textarea>
         </div>
     </div>
 
@@ -113,6 +113,7 @@
 
  @section Scripts {
     <script>
+         let editor = new FroalaEditor("#content");
         let featureUploadElement = document.getElementById("featuredImageUpload");
         let FeaturedImageUrlElement = document.getElementById("ImagePath");
 
