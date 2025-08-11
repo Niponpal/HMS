@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HMS.Repositorys
 {
@@ -9,5 +10,6 @@ namespace HMS.Repositorys
         HospitalRoom GetById(int id);
         void UpdateData(HospitalRoom hospitalRoom);
         string DeleteData(int  id);
+        IEnumerable<SelectListItem> Dropdown();
     }
 }

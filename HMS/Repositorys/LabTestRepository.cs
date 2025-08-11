@@ -1,5 +1,7 @@
 ﻿using HMS.Data;
 using HMS.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace HMS.Repositorys
 {
@@ -28,6 +30,8 @@ namespace HMS.Repositorys
             _dbContext.SaveChanges() ;
             return "Data Delte Sucessfull";
         }
+
+     
 
         public IEnumerable<LabTest> GetAllData()
         {

@@ -12,5 +12,11 @@
         public DateTime CreatedAt { get; set; }
         public string ImagePath { get; set; } // Report image
         public string Description { get; set; } // Test result summary
+
+        // Foreign key
+        public int PatientId { get; set; }
+
+        // Navigation property - many lab tests belong to one patient
+        public Patient Patient { get; set; }
     }
 }

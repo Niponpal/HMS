@@ -14,5 +14,8 @@
         public string Status { get; set; }
         public string ImagePath { get; set; } // Doctor photo
         public string Description { get; set; } // Bio or profile summary
+
+        // Doctor table and Appoinments Table relations 
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

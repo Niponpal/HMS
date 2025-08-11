@@ -8,10 +8,14 @@ namespace HMS.Areas.Admin.Controllers
     public class AppointmentController : Controller
     {
         private readonly IAppointmentRepository _repository;
-        public AppointmentController(IAppointmentRepository repository)
+        private readonly IDoctorRepository _doctorRepository;
+     
+        public AppointmentController(IAppointmentRepository repository, IDoctorRepository doctorRepository)
         {
             _repository = repository;
+            _doctorRepository = doctorRepository;
         }
+
         public IActionResult Index()
         {
             var data = _repository.GetAllData();
@@ -20,6 +24,7 @@ namespace HMS.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["DoctorId"] = _doctorRepository.Dropdown();
             return View();
         }
         [HttpPost]

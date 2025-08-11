@@ -8,11 +8,14 @@ namespace HMS.Areas.Admin.Controllers
     public class PatientController : Controller
     {
         private readonly IPatientRepository _patientRepository;
+      
         
         public PatientController(IPatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
+          
         }
+
         public IActionResult Index()
         {
             var data = _patientRepository.GatAllData();
@@ -21,6 +24,7 @@ namespace HMS.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+           
             return View();
         }
         [HttpPost]

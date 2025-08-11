@@ -11,5 +11,11 @@
         public DateTime CreatedAt { get; set; }
         public DateTime? CompletedAt { get; set; }
         public string Description { get; set; }
+
+        // Foreign key to Doctor
+        public int DoctorId { get; set; }
+        public Doctor Doctor { get; set; }
+
+       
     }
 }

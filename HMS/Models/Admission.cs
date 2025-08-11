@@ -13,5 +13,12 @@
         public DateTime CreatedAt { get; set; }
         public string ImagePath { get; set; } // Test report or admit paper
         public string Description { get; set; } // Any special notes
+
+        // Foreign key (one-to-one)
+
+        public int HospitalRoomId { get; set; }
+
+        // Navigation property
+        public HospitalRoom HospitalRoom { get; set; }
     }
 }

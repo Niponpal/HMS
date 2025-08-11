@@ -8,6 +8,36 @@ namespace HMS.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            // Configure one-to-many relationship between Appointments and Doctor
+            modelBuilder.Entity<Doctor>()
+                .HasMany(d => d.Appointments)
+                .WithOne(a => a.Doctor)
+                .HasForeignKey(a => a.DoctorId);
+
+            // Configure one-to-many relationship between Patient and Appointments
+            modelBuilder.Entity<Patient>()
+           .HasMany(p => p.MedicalRecords)
+           .WithOne(m => m.Patient)
+           .HasForeignKey(m => m.PatientId)
+           .OnDelete(DeleteBehavior.Cascade);
+
+            // Configure one-to-one relationship
+                 modelBuilder.Entity<Admission>()
+                .HasOne(a => a.HospitalRoom)
+                .WithOne(r => r.Admission)
+                .HasForeignKey<Admission>(a => a.HospitalRoomId);
+
+            // Configure many-to-one relationship
+            modelBuilder.Entity<LabTest>()
+                .HasOne(l => l.Patient)
+                .WithMany(p => p.LabTests)
+                .HasForeignKey(l => l.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+        }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Appointment> Appointments { get; set; }

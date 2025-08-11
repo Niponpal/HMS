@@ -1,6 +1,7 @@
 ﻿using HMS.Data;
 using HMS.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HMS.Repositorys
 {
@@ -29,6 +30,17 @@ namespace HMS.Repositorys
             _context.SaveChanges();
             return "Delete Data Successfully";
         }
+
+        public IEnumerable<SelectListItem> Dropdown()
+        {
+            var data = _context.Doctors.Select(x => new SelectListItem
+            {
+                Text = x.Email,
+                Value = x.Id.ToString()
+            }).ToList();
+            return data;
+        }
+
         public IEnumerable<Doctor> GetAllData()
         {
            var data = _context.Doctors.ToList();

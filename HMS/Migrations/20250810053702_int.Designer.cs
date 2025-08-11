@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HMS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250801194208_lab")]
-    partial class lab
+    [Migration("20250810053702_int")]
+    partial class @int
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,9 @@ namespace HMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("HospitalRoomId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,6 +73,9 @@ namespace HMS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HospitalRoomId")
+                        .IsUnique();
 
                     b.ToTable("Admissions");
                 });
@@ -99,6 +105,9 @@ namespace HMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -112,6 +121,8 @@ namespace HMS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("Appointments");
                 });
@@ -291,6 +302,9 @@ namespace HMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -310,6 +324,8 @@ namespace HMS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("LabTests");
                 });
@@ -345,6 +361,9 @@ namespace HMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Prescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -361,6 +380,8 @@ namespace HMS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("MedicalRecords");
                 });
@@ -527,6 +548,68 @@ namespace HMS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Staffs");
+                });
+
+            modelBuilder.Entity("HMS.Models.Admission", b =>
+                {
+                    b.HasOne("HMS.Models.HospitalRoom", "HospitalRoom")
+                        .WithOne("Admission")
+                        .HasForeignKey("HMS.Models.Admission", "HospitalRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HospitalRoom");
+                });
+
+            modelBuilder.Entity("HMS.Models.Appointment", b =>
+                {
+                    b.HasOne("HMS.Models.Doctor", "Doctor")
+                        .WithMany("Appointments")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("HMS.Models.LabTest", b =>
+                {
+                    b.HasOne("HMS.Models.Patient", "Patient")
+                        .WithMany("LabTests")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("HMS.Models.MedicalRecord", b =>
+                {
+                    b.HasOne("HMS.Models.Patient", "Patient")
+                        .WithMany("MedicalRecords")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("HMS.Models.Doctor", b =>
+                {
+                    b.Navigation("Appointments");
+                });
+
+            modelBuilder.Entity("HMS.Models.HospitalRoom", b =>
+                {
+                    b.Navigation("Admission")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HMS.Models.Patient", b =>
+                {
+                    b.Navigation("LabTests");
+
+                    b.Navigation("MedicalRecords");
                 });
 #pragma warning restore 612, 618
         }

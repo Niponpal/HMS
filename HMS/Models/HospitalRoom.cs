@@ -13,5 +13,9 @@
         public string Description { get; set; }
         public DateTime LastUpdated { get; set; }
         public string ImagePath { get; set; } // Room image
+
+        // Navigation property (one-to-one)
+        public Admission Admission { get; set; }
+
     }
 }

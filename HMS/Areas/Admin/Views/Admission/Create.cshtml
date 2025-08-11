@@ -27,6 +27,11 @@
             <input asp-for="TreatmentPlan" class="form-control" />
             <span asp-validation-for="TreatmentPlan" class="text-danger"></span>
         </div>
+        <div class="col-md-6 mb-3">
+            <select asp-for="HospitalRoomId" class="form-control" asp-items="@(ViewBag.HospitalRoomId)">
+                <option value="">Select Hospital Room</option>
+            </select>
+        </div>
 
         <div class="col-md-6 mb-3">
             <label asp-for="AdvancePayment" class="form-label"></label>

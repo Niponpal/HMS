@@ -8,10 +8,15 @@ namespace HMS.Areas.Admin.Controllers
     public class LabTestController : Controller
     {
         private readonly ILabTestRepository _testRepository;
-        public LabTestController(ILabTestRepository testRepository)
+        private readonly IPatientRepository _patientRepository;
+     
+
+        public LabTestController(ILabTestRepository testRepository, IPatientRepository patientRepository)
         {
             _testRepository = testRepository;
+            _patientRepository = patientRepository;
         }
+
         public IActionResult Index()
         {
             var data = _testRepository.GetAllData();
@@ -25,6 +30,7 @@ namespace HMS.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["PatientId"] = _patientRepository.Dropdown();
             return View();
         }
         [HttpPost]

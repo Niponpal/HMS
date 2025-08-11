@@ -35,6 +35,13 @@
             <span asp-validation-for="Symptoms" class="text-danger"></span>
         </div>
 
+        <div class="col-md-6 mb-3">
+            <select asp-for="DoctorId" class="form-control" asp-items="@(ViewBag.DoctorId)">
+                <option value="">Select Your Email</option>
+            </select>
+        </div>
+       
+
         <div class="col-md-12 mb-3">
             <label asp-for="Notes" class="form-label">Doctor Notes</label>
             <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Internal use only..."></textarea>

@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HMS.Repositorys
 {
@@ -8,6 +9,7 @@ namespace HMS.Repositorys
         string AddData(LabTest labTest);
         LabTest GetById(int id);
         void UpdateData(LabTest labTest);
-        string DeleteData(int id); 
+        string DeleteData(int id);
+       
     }
 }

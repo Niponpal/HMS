@@ -5,17 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace HMS.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdmissionController : Controller
+    public class AdmissionController(IAdmissionRepository admissionRepository, IHospitalRoomRepository hospitalRoomRepository) : Controller
     {
-        private readonly IAdmissionRepository _admissionRepository;
-
-        public AdmissionController(IAdmissionRepository admissionRepository)
-        {
-            _admissionRepository = admissionRepository;
-        }
         public IActionResult Index()
         {
-            var data = _admissionRepository.GetAllData();
+            var data = admissionRepository.GetAllData();
             if (data == null) 
             {
                 return NotFound();
@@ -25,18 +19,21 @@ namespace HMS.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["HospitalRoomId"] = hospitalRoomRepository.Dropdown();
             return View();
         }
         [HttpPost]
         public IActionResult Create(Admission admission)
         {
-            var data = _admissionRepository.AddData(admission);
+            //admission.HospitalRoomId = 1;
+            var data = admissionRepository.AddData(admission);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = _admissionRepository.GetById(id);
+            ViewData["HospitalRoomId"] = hospitalRoomRepository.Dropdown();
+            var data = admissionRepository.GetById(id);
             if(data == null)
             {
                 return NotFound();
@@ -46,7 +43,7 @@ namespace HMS.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Admission admission)
         {
-            var data = _admissionRepository.GetById(admission.Id);
+            var data = admissionRepository.GetById(admission.Id);
             if(data == null)
             {
                 return NotFound();
@@ -61,13 +58,13 @@ namespace HMS.Areas.Admin.Controllers
             data.DoctorRemarks = admission.DoctorRemarks;
             data.DischargeStatus = admission.DischargeStatus;
             data.TreatmentPlan = admission.TreatmentPlan;
-            _admissionRepository.UpdateData(data);
+            admissionRepository.UpdateData(data);
              return RedirectToAction("Index");      
         }
         [HttpPost]
         public IActionResult Delete(int id) 
         {
-            var data = _admissionRepository.DeleteData(id);
+            var data = admissionRepository.DeleteData(id);
             if (data == null)
             {
                 return NotFound();
@@ -78,7 +75,7 @@ namespace HMS.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Details(int id) 
         {
-           var data=_admissionRepository.GetById(id);
+           var data=admissionRepository.GetById(id);
             return View(data);
         }
     }

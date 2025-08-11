@@ -14,5 +14,12 @@
         public string EmergencyContact { get; set; }
         public string ImagePath { get; set; } 
         public string Description { get; set; }
+
+        // Navigation propery -onte patiient can have any medicalRecord
+        public ICollection<MedicalRecord> MedicalRecords { get; set; }
+
+
+        // Navigation property - one patient can have many lab tests
+        public ICollection<LabTest> LabTests { get; set; }
     }
 }

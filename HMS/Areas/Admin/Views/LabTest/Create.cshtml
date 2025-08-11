@@ -24,6 +24,12 @@
                 <span asp-validation-for="TestResult" class="text-danger"></span>
             </div>
 
+            <div class="col-md-6 mb-3">
+                <select asp-for="PatientId" class="form-control" asp-items="@(ViewBag.PatientId)">
+                    <option value="">Select Your Patient Email</option>
+                </select>
+            </div>
+
             <div class="col-md-6">
                 <label asp-for="Status" class="form-label">Status</label>
                 <input asp-for="Status" class="form-control" />

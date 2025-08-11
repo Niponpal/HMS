@@ -13,5 +13,9 @@
         public DateTime CreatedAt { get; set; }
         public string ImagePath { get; set; } 
         public string Description { get; set; }
+
+        // Foreign key
+        public int PatientId { get; set; }
+        public Patient Patient { get; set; }
     }
 }

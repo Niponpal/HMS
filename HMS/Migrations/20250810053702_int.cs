@@ -6,53 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HMS.Migrations
 {
     /// <inheritdoc />
-    public partial class lab : Migration
+    public partial class @int : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Admissions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AdmitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DischargeDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TreatmentPlan = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvancePayment = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DischargeStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DoctorRemarks = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admissions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Appointments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TimeSlot = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppointmentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Symptoms = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CompletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Appointments", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Doctors",
                 columns: table => new
@@ -119,49 +77,6 @@ namespace HMS.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_invoices", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LabTests",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TestName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TestResult = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TestFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LabTests", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MedicalRecords",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RecordDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Symptoms = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Prescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TestResults = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NextVisitSuggestion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MedicalRecords", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -232,6 +147,140 @@ namespace HMS.Migrations
                 {
                     table.PrimaryKey("PK_Staffs", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TimeSlot = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AppointmentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Symptoms = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CompletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Doctors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Admissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdmitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DischargeDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TreatmentPlan = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdvancePayment = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DischargeStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DoctorRemarks = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HospitalRoomId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admissions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Admissions_HospitalRooms_HospitalRoomId",
+                        column: x => x.HospitalRoomId,
+                        principalTable: "HospitalRooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LabTests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TestName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TestResult = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TestFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PatientId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LabTests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LabTests_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedicalRecords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecordDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Symptoms = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Prescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TestResults = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NextVisitSuggestion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PatientId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicalRecords", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MedicalRecords_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Admissions_HospitalRoomId",
+                table: "Admissions",
+                column: "HospitalRoomId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_DoctorId",
+                table: "Appointments",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LabTests_PatientId",
+                table: "LabTests",
+                column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicalRecords_PatientId",
+                table: "MedicalRecords",
+                column: "PatientId");
         }
 
         /// <inheritdoc />
@@ -242,12 +291,6 @@ namespace HMS.Migrations
 
             migrationBuilder.DropTable(
                 name: "Appointments");
-
-            migrationBuilder.DropTable(
-                name: "Doctors");
-
-            migrationBuilder.DropTable(
-                name: "HospitalRooms");
 
             migrationBuilder.DropTable(
                 name: "invoices");
@@ -262,10 +305,16 @@ namespace HMS.Migrations
                 name: "Medicines");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "Staffs");
 
             migrationBuilder.DropTable(
-                name: "Staffs");
+                name: "HospitalRooms");
+
+            migrationBuilder.DropTable(
+                name: "Doctors");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
         }
     }
 }
