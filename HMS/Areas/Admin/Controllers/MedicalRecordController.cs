@@ -9,10 +9,15 @@ namespace HMS.Areas.Admin.Controllers
     public class MedicalRecordController : Controller
     {
         private readonly IMedicalRecordRepository _repository;
-        public MedicalRecordController(IMedicalRecordRepository repository)
+        private readonly IPatientRepository _medicalRecordRepository;
+
+       
+        public MedicalRecordController(IMedicalRecordRepository repository, IPatientRepository medicalRecordRepository)
         {
             _repository = repository;
+            _medicalRecordRepository = medicalRecordRepository;
         }
+
         public IActionResult Index()
         {
             var data = _repository.GetAllData();
@@ -25,6 +30,7 @@ namespace HMS.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["PatientId"] = _medicalRecordRepository.DropdownMedical();
             return View(); 
         }
         [HttpPost]

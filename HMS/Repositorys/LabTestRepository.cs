@@ -31,8 +31,6 @@ namespace HMS.Repositorys
             return "Data Delte Sucessfull";
         }
 
-     
-
         public IEnumerable<LabTest> GetAllData()
         {
             var data = _dbContext.LabTests.ToList();

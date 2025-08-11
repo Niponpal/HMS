@@ -31,11 +31,22 @@ namespace HMS.Repositorys
             return "Deleted Sucessful";
         }
 
+        // returns all patients
         public IEnumerable<SelectListItem> Dropdown()
         {
             var data = _context.LabTests.Select(x => new SelectListItem
             {
                 Text = x.TestName,
+                Value = x.Id.ToString()
+            }).ToList();
+            return data;
+        }
+
+        public IEnumerable<SelectListItem> DropdownMedical()
+        {
+            var data = _context.MedicalRecords.Select(x => new SelectListItem
+            {
+                Text = x.Diagnosis,
                 Value = x.Id.ToString()
             }).ToList();
             return data;

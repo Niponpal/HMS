@@ -11,5 +11,6 @@ namespace HMS.Repositorys
         void Update(Patient patient);
         String DeleteData(int id);
         IEnumerable<SelectListItem> Dropdown();
+        IEnumerable<SelectListItem> DropdownMedical();
     }
 }
