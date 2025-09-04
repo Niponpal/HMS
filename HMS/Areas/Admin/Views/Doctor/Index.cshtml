@@ -22,7 +22,7 @@
                     <th>Joining Date</th>
                     <th>Status</th>
                     <th>Description</th>
-                    <th>ImagePathe</th>
+                    <th>Images</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -41,7 +41,20 @@
                         <td>@item.JoiningDate.ToString("yyyy-MM-dd hh:mm tt")</td>
                         <td>@item.Status</td>
                         <td>@item.Description</td>
-                        <td>@item.ImagePath</td>
+                        <td class="text-center">
+                            @if (!string.IsNullOrWhiteSpace(item.ImagePath))
+                            {
+                                <img src="@item.ImagePath"
+                                     alt="@item.FullName"
+                                     class="rounded shadow-sm"
+                                     width="60" height="60"
+                                     style="object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">No Image</span>
+                            }
+                        </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>

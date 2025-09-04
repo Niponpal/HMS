@@ -1,52 +1,83 @@
 ﻿@model Invoice
 
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h3 class="mb-0">🧾 Invoice Details</h3>
+        </div>
 
-<h2 class="mb-4 mx-4">Invoice Details</h2>
+        <div class="card-body p-4">
+            <div class="row g-3">
 
-<div class="card shadow p-4 mx-4">
-    <dl class="row">
-        <dt class="col-sm-4">Invoice Date</dt>
-        <dd class="col-sm-8">@Model.InvoiceDate.ToString("yyyy-MM-dd")</dd>
+                <!-- Invoice Date & Payment Status -->
+                <div class="col-md-6">
+                    <h6 class="text-muted">📅 Invoice Date</h6>
+                    <p class="fw-semibold">@Model.InvoiceDate.ToString("yyyy-MM-dd")</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">💳 Payment Status</h6>
+                    <p>@Model.PaymentStatus</p>
+                </div>
 
-        <dt class="col-sm-4">Consultation Fee</dt>
-        <dd class="col-sm-8">@Model.ConsultationFee.ToString("C")</dd>
+                <!-- Charges Section -->
+                <div class="col-md-6">
+                    <h6 class="text-muted">💊 Consultation Fee</h6>
+                    <p>৳@Model.ConsultationFee.ToString("F2")</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">🏥 Room Charge</h6>
+                    <p>৳@Model.RoomChrge.ToString("F2")</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">💊 Medicine Charge</h6>
+                    <p>৳@Model.MedicineCharge.ToString("F2")</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">🔬 Lab Test Charge</h6>
+                    <p>৳@Model.LabTestCharge.ToString("F2")</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">📦 Other Charges</h6>
+                    <p>৳@Model.OtherCharges.ToString("F2")</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">🏷️ Discount</h6>
+                    <p>৳@Model.Discount.ToString("F2")</p>
+                </div>
+                <div class="col-md-12">
+                    <h6 class="text-muted">💰 Total Amount</h6>
+                    <p class="fw-bold fs-5">৳@Model.TotalAmount.ToString("F2")</p>
+                </div>
 
-        <dt class="col-sm-4">Room Charge</dt>
-        <dd class="col-sm-8">@Model.RoomChrge.ToString("C")</dd>
+                <!-- Description -->
+                <div class="col-md-12">
+                    <h6 class="text-muted">📝 Description</h6>
+                    <p>@Model.Description</p>
+                </div>
 
-        <dt class="col-sm-4">Medicine Charge</dt>
-        <dd class="col-sm-8">@Model.MedicineCharge.ToString("C")</dd>
+                <!-- Invoice Scan -->
+                <div class="col-md-12">
+                    <h6 class="text-muted">🖼️ Invoice Scan</h6>
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <a href="@Url.Content(Model.ImagePath)" target="_blank" class="btn btn-outline-primary btn-sm">
+                            View Scan
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">No file uploaded</span>
+                    }
+                </div>
 
-        <dt class="col-sm-4">Lab Test Charge</dt>
-        <dd class="col-sm-8">@Model.LabTestCharge.ToString("C")</dd>
+            </div>
 
-        <dt class="col-sm-4">Other Charges</dt>
-        <dd class="col-sm-8">@Model.OtherCharges.ToString("C")</dd>
-
-        <dt class="col-sm-4">Discount</dt>
-        <dd class="col-sm-8">@Model.Discount.ToString("C")</dd>
-
-        <dt class="col-sm-4">Total Amount</dt>
-        <dd class="col-sm-8">@Model.TotalAmount.ToString("C")</dd>
-
-        <dt class="col-sm-4">Payment Status</dt>
-        <dd class="col-sm-8">@Model.PaymentStatus</dd>
-
-        <dt class="col-sm-4">Description</dt>
-        <dd class="col-sm-8">@Model.Description</dd>
-
-        <dt class="col-sm-4">Invoice Scan</dt>
-        <dd class="col-sm-8">
-            @if (!string.IsNullOrEmpty(Model.ImagePath))
-            {
-                <a href="@Url.Content(Model.ImagePath)" target="_blank">View Scan</a>
-            }
-            else
-            {
-                <span class="text-muted">No file uploaded</span>
-            }
-        </dd>
-    </dl>
-
-    <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
+            <!-- Action Buttons -->
+            <div class="text-end mt-4">
+                <a asp-action="Index" class="btn btn-secondary shadow-sm">
+                    <i class="bi bi-arrow-left-circle"></i> Back to List
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,129 +1,151 @@
 ﻿@model Doctor
 
-
-<h2 class="mb-4 mx-4">Add New Doctor</h2>
-
-<form asp-action="Create" class="mx-4" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="FullName" class="form-label"></label>
-            <input asp-for="FullName" class="form-control" />
-            <span asp-validation-for="FullName" class="text-danger"></span>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h3 class="mb-0">➕ Add New Doctor</h3>
         </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Specialization" class="form-label"></label>
-            <input asp-for="Specialization" class="form-control" />
-            <span asp-validation-for="Specialization" class="text-danger"></span>
-        </div>
+        <div class="card-body p-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="row g-4">
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="PhoneNumber" class="form-label"></label>
-            <input asp-for="PhoneNumber" class="form-control" />
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        </div>
+                    <!-- Full Name -->
+                    <div class="col-md-6">
+                        <label asp-for="FullName" class="form-label fw-semibold"></label>
+                        <input asp-for="FullName" class="form-control shadow-sm" placeholder="Enter doctor's full name" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
+                    <!-- Specialization -->
+                    <div class="col-md-6">
+                        <label asp-for="Specialization" class="form-label fw-semibold"></label>
+                        <input asp-for="Specialization" class="form-control shadow-sm" placeholder="e.g. Cardiologist" />
+                        <span asp-validation-for="Specialization" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Qualification" class="form-label"></label>
-            <input asp-for="Qualification" class="form-control" />
-            <span asp-validation-for="Qualification" class="text-danger"></span>
-        </div>
+                    <!-- Phone -->
+                    <div class="col-md-6">
+                        <label asp-for="PhoneNumber" class="form-label fw-semibold"></label>
+                        <input asp-for="PhoneNumber" class="form-control shadow-sm" placeholder="+8801XXXXXXXXX" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="ExperienceYears" class="form-label"></label>
-            <input asp-for="ExperienceYears" class="form-control" type="number" />
-            <span asp-validation-for="ExperienceYears" class="text-danger"></span>
-        </div>
+                    <!-- Email -->
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label fw-semibold"></label>
+                        <input asp-for="Email" class="form-control shadow-sm" placeholder="doctor@email.com" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Gender" class="form-label"></label>
-            <select asp-for="Gender" class="form-select">
-                <option value="">-- Select Gender --</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-            </select>
-            <span asp-validation-for="Gender" class="text-danger"></span>
-        </div>
+                    <!-- Qualification -->
+                    <div class="col-md-6">
+                        <label asp-for="Qualification" class="form-label fw-semibold"></label>
+                        <input asp-for="Qualification" class="form-control shadow-sm" placeholder="e.g. MBBS, FCPS" />
+                        <span asp-validation-for="Qualification" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="JoiningDate" class="form-label"></label>
-            <input asp-for="JoiningDate" class="form-control" type="date" />
-            <span asp-validation-for="JoiningDate" class="text-danger"></span>
-        </div>
+                    <!-- Experience -->
+                    <div class="col-md-6">
+                        <label asp-for="ExperienceYears" class="form-label fw-semibold"></label>
+                        <input asp-for="ExperienceYears" type="number" min="0" class="form-control shadow-sm" placeholder="Years of experience" />
+                        <span asp-validation-for="ExperienceYears" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Status" class="form-label"></label>
-            <select asp-for="Status" class="form-select">
-                <option value="">-- Select Status --</option>
-                <option>Active</option>
-                <option>Inactive</option>
-            </select>
-            <span asp-validation-for="Status" class="text-danger"></span>
-        </div>
+                    <!-- Gender -->
+                    <div class="col-md-6 mt-5">
+                        <label asp-for="Gender" class="form-label fw-semibold"></label>
+                        <select asp-for="Gender" class="form-select shadow-sm">
+                            <option value="">-- Select Gender --</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger small"></span>
+                    </div>
 
+                    <!-- Joining Date -->
+                    <div class="col-md-6">
+                        <label asp-for="JoiningDate" class="form-label fw-semibold"></label>
+                        <input asp-for="JoiningDate" type="date" class="form-control shadow-sm" />
+                        <span asp-validation-for="JoiningDate" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label>Feature Image Upload</label>
-            <div> <input type="file" class="form-control" id="featuredImageUpload" /> </div>
-        </div>
+                    <!-- Status -->
+                    <div class="col-md-6 mt-5">
+                        <label asp-for="Status" class="form-label fw-semibold"></label>
+                        <select asp-for="Status" class="form-select shadow-sm">
+                            <option value="">-- Select Status --</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-12 mb-3">
-            <label asp-for="ImagePath" class="form-label"></label>
-            <input asp-for="ImagePath" class="form-control" type="text" />
-            <span asp-validation-for="ImagePath" class="text-danger"></span>
-        </div>
+                    <!-- Feature Image Upload -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Upload Profile Image</label>
+                        <input type="file" class="form-control shadow-sm" id="featuredImageUpload" />
+                    </div>
 
-        <div class="col-md-12 mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control" rows="4" id="content"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                    <!-- Hidden Image Path -->
+                    <div class="col-md-12">
+                        <label asp-for="ImagePath" class="form-label fw-semibold"></label>
+                        <input asp-for="ImagePath" class="form-control shadow-sm" type="text" readonly />
+                        <span asp-validation-for="ImagePath" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Add Doctor</button>
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    <!-- Description -->
+                    <div class="col-md-12">
+                        <label asp-for="Description" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Description" class="form-control shadow-sm" rows="4" id="content" placeholder="Brief introduction about the doctor"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary px-4 me-2 shadow-sm">
+                        <i class="bi bi-save"></i> Save Doctor
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4 shadow-sm">
+                        <i class="bi bi-x-circle"></i> Cancel
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-</form>
-
-
+</div>
 
 @section Scripts {
     <script>
+        // Rich text editor for description
         let editor = new FroalaEditor("#content");
+
+        // Image upload handling
         let featureUploadElement = document.getElementById("featuredImageUpload");
         let FeaturedImageUrlElement = document.getElementById("ImagePath");
 
         async function featureImageUpload(e) {
-          let file = e.target.files[0];
-          if (!file) return;
+            let file = e.target.files[0];
+            if (!file) return;
 
-          let data = new FormData();
-          data.append("file", file);
+            let data = new FormData();
+            data.append("file", file);
 
-          fetch("/api/images", {
-            method: "POST",
-            headers: {
-              "Accept": "*/*"
-            },
-            body: data
-          })
-          .then(res => res.json())
-          .then(result => {
-            console.log(result);
-            FeaturedImageUrlElement.value = result.link;  // Correct usage here
-          })
-          .catch(err => {
-            console.error("Upload error:", err);
-            alert("Image upload failed. Please try again.");
-          });
+            fetch("/api/images", {
+                method: "POST",
+                headers: { "Accept": "*/*" },
+                body: data
+            })
+            .then(res => res.json())
+            .then(result => {
+                FeaturedImageUrlElement.value = result.link;
+            })
+            .catch(err => {
+                console.error("Upload error:", err);
+                alert("Image upload failed. Please try again.");
+            });
         }
 
         featureUploadElement.addEventListener("change", featureImageUpload);

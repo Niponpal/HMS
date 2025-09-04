@@ -1,84 +1,108 @@
 ﻿@model Appointment
 
-
-<h2 class="mb-4 mx-4 text-center">Book an Appointment</h2>
-
-<form asp-action="Create" method="post" class="needs-validation mx-4" novalidate>
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="AppointmentDate" class="form-label">Appointment Date</label>
-            <input asp-for="AppointmentDate" class="form-control" type="date" />
-            <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h4 class="mb-0 fw-bold">📅 Book an Appointment</h4>
         </div>
+        <div class="card-body p-4">
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="TimeSlot" class="form-label">Time Slot</label>
-            <input asp-for="TimeSlot" class="form-control" placeholder="e.g. 10:00 AM - 11:00 AM" />
-            <span asp-validation-for="TimeSlot" class="text-danger"></span>
-        </div>
+            <form asp-action="Create" method="post" class="needs-validation" novalidate>
+                <div class="row g-4">
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="AppointmentStatus" class="form-label">Status</label>
-            <select asp-for="AppointmentStatus" class="form-select">
-                <option value="">-- Select Status --</option>
-                <option>Pending</option>
-                <option>Confirmed</option>
-                <option>Cancelled</option>
-                <option>Completed</option>
-            </select>
-            <span asp-validation-for="AppointmentStatus" class="text-danger"></span>
-        </div>
+                    <!-- Appointment Date -->
+                    <div class="col-md-6">
+                        <label asp-for="AppointmentDate" class="form-label fw-semibold"></label>
+                        <input asp-for="AppointmentDate" class="form-control" type="date" />
+                        <span asp-validation-for="AppointmentDate" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Symptoms" class="form-label">Symptoms</label>
-            <input asp-for="Symptoms" class="form-control" placeholder="Describe your symptoms" />
-            <span asp-validation-for="Symptoms" class="text-danger"></span>
-        </div>
+                    <!-- Time Slot -->
+                    <div class="col-md-6">
+                        <label asp-for="TimeSlot" class="form-label fw-semibold"></label>
+                        <input asp-for="TimeSlot" class="form-control" placeholder="e.g. 10:00 AM - 11:00 AM" />
+                        <span asp-validation-for="TimeSlot" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <select asp-for="DoctorId" class="form-control" asp-items="@(ViewBag.DoctorId)">
-                <option value="">Select Your Email</option>
-            </select>
-        </div>
-       
+                    <!-- Status -->
+                    <div class="col-md-6 mt-5">
+                        <label asp-for="AppointmentStatus" class="form-label fw-semibold"></label>
+                        <select asp-for="AppointmentStatus" class="form-select">
+                            <option value="">-- Select Status --</option>
+                            <option>Pending</option>
+                            <option>Confirmed</option>
+                            <option>Cancelled</option>
+                            <option>Completed</option>
+                        </select>
+                        <span asp-validation-for="AppointmentStatus" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-12 mb-3">
-            <label asp-for="Notes" class="form-label">Doctor Notes</label>
-            <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Internal use only..."></textarea>
-            <span asp-validation-for="Notes" class="text-danger"></span>
-        </div>
+                    <!-- Symptoms -->
+                    <div class="col-md-6">
+                        <label asp-for="Symptoms" class="form-label fw-semibold"></label>
+                        <input asp-for="Symptoms" class="form-control" placeholder="Describe your symptoms" />
+                        <span asp-validation-for="Symptoms" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="CreatedAt" class="form-label">Created At</label>
-            <input asp-for="CreatedAt" class="form-control" type="datetime-local" />
-            <span asp-validation-for="CreatedAt" class="text-danger"></span>
-        </div>
+                    <!-- Doctor Email -->
+                    <div class="col-md-6 mt-5">
+                        <label asp-for="DoctorId" class="form-label fw-semibold">Doctor Email</label>
+                        <select asp-for="DoctorId" class="form-select" asp-items="@(ViewBag.DoctorId)">
+                            <option value="">-- Select Doctor --</option>
+                        </select>
+                        <span asp-validation-for="DoctorId" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="CompletedAt" class="form-label">Completed At</label>
-            <input asp-for="CompletedAt" class="form-control" type="datetime-local" />
-            <span asp-validation-for="CompletedAt" class="text-danger"></span>
-        </div>
+                    <!-- Doctor Notes -->
+                    <div class="col-md-6">
+                        <label asp-for="Notes" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Internal use only..."></textarea>
+                        <span asp-validation-for="Notes" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-12 mb-3">
-            <label asp-for="Description" class="form-label">Additional Description</label>
-            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Any other relevant information..." id="content"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                    <!-- Created At -->
+                    <div class="col-md-6">
+                        <label asp-for="CreatedAt" class="form-label fw-semibold"></label>
+                        <input asp-for="CreatedAt" class="form-control" type="datetime-local" />
+                        <span asp-validation-for="CreatedAt" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-12 text-center mt-4">
-            <button type="submit" class="btn btn-primary px-4">Submit Appointment</button>
+                    <!-- Completed At -->
+                    <div class="col-md-6">
+                        <label asp-for="CompletedAt" class="form-label fw-semibold"></label>
+                        <input asp-for="CompletedAt" class="form-control" type="datetime-local" />
+                        <span asp-validation-for="CompletedAt" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-12">
+                        <label asp-for="Description" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Any other relevant information..." id="content"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-success px-5">
+                            ✅ Submit Appointment
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary ms-2 px-5">
+                            ⬅ Back to List
+                        </a>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
-</form>
+</div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-       
     }
-   <script>
+    <script>
+        // Froala Editor
         let editor = new FroalaEditor("#content");
-   </script>
+    </script>
 }
-

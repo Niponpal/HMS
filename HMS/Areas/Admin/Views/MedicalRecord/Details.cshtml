@@ -1,75 +1,83 @@
 ﻿@model MedicalRecord
 
-
-<h2 class="mb-4 mx-4">Medical Record Details</h2>
-
-<div class="card mx-4">
-    <div class="card-body">
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>Record Date:</strong>
-                <p>@Model.RecordDate.ToShortDateString()</p>
-            </div>
-            <div class="col-md-6">
-                <strong>Created At:</strong>
-                <p>@Model.CreatedAt.ToString("g")</p>
-            </div>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h3 class="mb-0">📋 Medical Record Details</h3>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>Symptoms:</strong>
-                <p>@Model.Symptoms</p>
-            </div>
-            <div class="col-md-6">
-                <strong>Diagnosis:</strong>
-                <p>@Model.Diagnosis</p>
-            </div>
-        </div>
+        <div class="card-body p-4">
+            <div class="row g-4">
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>Prescription:</strong>
-                <p>@Model.Prescription</p>
-            </div>
-            <div class="col-md-6">
-                <strong>Notes:</strong>
-                <p>@Model.Notes</p>
-            </div>
-        </div>
+                <!-- Record Date & Created At -->
+                <div class="col-md-6">
+                    <h6 class="text-muted">📅 Record Date</h6>
+                    <p class="fw-semibold">@Model.RecordDate.ToShortDateString()</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">⏰ Created At</h6>
+                    <p class="fw-semibold">@Model.CreatedAt.ToString("g")</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>Test Results:</strong>
-                <p>@Model.TestResults</p>
-            </div>
-            <div class="col-md-6">
-                <strong>Next Visit Suggestion:</strong>
-                <p>@Model.NextVisitSuggestion</p>
-            </div>
-        </div>
+                <!-- Symptoms & Diagnosis -->
+                <div class="col-md-6">
+                    <h6 class="text-muted">🤒 Symptoms</h6>
+                    <p>@Model.Symptoms</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">🩺 Diagnosis</h6>
+                    <p>@Model.Diagnosis</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <strong>Description:</strong>
-                <p>@Model.Description</p>
-            </div>
-            <div class="col-md-6">
-                <strong>Image:</strong><br />
-                @if (!string.IsNullOrEmpty(Model.ImagePath))
-                {
-                    <img src="@Model.ImagePath" alt="Medical Record Image" class="img-thumbnail mt-2" style="max-width: 250px;" />
-                }
-                else
-                {
-                    <p>No image available.</p>
-                }
-            </div>
-        </div>
+                <!-- Prescription & Notes -->
+                <div class="col-md-6">
+                    <h6 class="text-muted">💊 Prescription</h6>
+                    <p>@Model.Prescription</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">📝 Notes</h6>
+                    <p>@Model.Notes</p>
+                </div>
 
-        <div class="text-end mt-4">
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-            <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+                <!-- Test Results & Next Visit -->
+                <div class="col-md-6">
+                    <h6 class="text-muted">🔬 Test Results</h6>
+                    <p>@Model.TestResults</p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">📌 Next Visit Suggestion</h6>
+                    <p>@Model.NextVisitSuggestion</p>
+                </div>
+
+                <!-- Description -->
+                <div class="col-md-12">
+                    <h6 class="text-muted">📖 Description</h6>
+                    <p>@Model.Description</p>
+                </div>
+
+                <!-- Image -->
+                <div class="col-md-12">
+                    <h6 class="text-muted">🖼️ Medical Image</h6>
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <img src="@Model.ImagePath" alt="Medical Record Image" class="img-fluid rounded shadow-sm mt-2" style="max-width: 300px;" />
+                    }
+                    else
+                    {
+                        <p class="text-muted fst-italic">No image available.</p>
+                    }
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="text-end mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4 shadow-sm">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+                <a asp-action="Index" class="btn btn-outline-secondary px-4 ms-2 shadow-sm">
+                    <i class="bi bi-arrow-left-circle"></i> Back to List
+                </a>
+            </div>
         </div>
     </div>
 </div>

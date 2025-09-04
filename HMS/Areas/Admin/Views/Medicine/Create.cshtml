@@ -1,88 +1,114 @@
 ﻿@model Medicine
-<div class="container mt-4 mx-4">
-    <h2 class="mb-4">Add New Medicine</h2>
 
-    <form asp-action="Create" method="post" enctype="multipart/form-data" class="mx-4">
-        <div class="row g-3">
-
-            <div class="col-md-6">
-                <label asp-for="MedicineName" class="form-label">Medicine Name</label>
-                <input asp-for="MedicineName" class="form-control" />
-                <span asp-validation-for="MedicineName" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Manufacturer" class="form-label">Manufacturer</label>
-                <input asp-for="Manufacturer" class="form-control" />
-                <span asp-validation-for="Manufacturer" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="BatchNumber" class="form-label">Batch Number</label>
-                <input asp-for="BatchNumber" class="form-control" />
-                <span asp-validation-for="BatchNumber" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="ExpiryDate" class="form-label">Expiry Date</label>
-                <input asp-for="ExpiryDate" type="date" class="form-control" />
-                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="StockQuantity" class="form-label">Stock Quantity</label>
-                <input asp-for="StockQuantity" class="form-control" />
-                <span asp-validation-for="StockQuantity" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="PricePerUnit" class="form-label">Price Per Unit</label>
-                <input asp-for="PricePerUnit" class="form-control" />
-                <span asp-validation-for="PricePerUnit" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="AddedDate" class="form-label">Added Date</label>
-                <input asp-for="AddedDate" type="date" class="form-control" />
-                <span asp-validation-for="AddedDate" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Category" class="form-label">Category</label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="ImagePath" class="form-label">Category</label>
-                <input asp-for="ImagePath" class="form-control" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Upload Image</label>
-                <input type="file" name="imageFile" class="form-control" id="featuredImageUpload" />
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Description" class="form-label">Description / Warnings</label>
-                <textarea asp-for="Description" class="form-control" rows="4" id="content"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="UsageInstructions" class="form-label">Usage Instructions</label>
-                <textarea asp-for="UsageInstructions" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="UsageInstructions" class="text-danger"></span>
-            </div>
-
-            <div class="col-12 mt-3">
-
-                <button type="submit" class="btn btn-success">Save</button>
-                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-            </div>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-success text-white text-center py-3">
+            <h3 class="mb-0">💊 Add New Medicine</h3>
         </div>
-    </form>
+
+        <div class="card-body p-4">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="row g-4">
+
+                    <!-- Medicine Name -->
+                    <div class="col-md-6">
+                        <label asp-for="MedicineName" class="form-label fw-semibold">Medicine Name</label>
+                        <input asp-for="MedicineName" class="form-control shadow-sm" placeholder="Enter medicine name" />
+                        <span asp-validation-for="MedicineName" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Manufacturer -->
+                    <div class="col-md-6">
+                        <label asp-for="Manufacturer" class="form-label fw-semibold">Manufacturer</label>
+                        <input asp-for="Manufacturer" class="form-control shadow-sm" placeholder="Enter manufacturer name" />
+                        <span asp-validation-for="Manufacturer" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Batch Number -->
+                    <div class="col-md-6">
+                        <label asp-for="BatchNumber" class="form-label fw-semibold">Batch Number</label>
+                        <input asp-for="BatchNumber" class="form-control shadow-sm" placeholder="Enter batch number" />
+                        <span asp-validation-for="BatchNumber" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Expiry Date -->
+                    <div class="col-md-6">
+                        <label asp-for="ExpiryDate" class="form-label fw-semibold">Expiry Date</label>
+                        <input asp-for="ExpiryDate" type="date" class="form-control shadow-sm" />
+                        <span asp-validation-for="ExpiryDate" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Stock Quantity -->
+                    <div class="col-md-6">
+                        <label asp-for="StockQuantity" class="form-label fw-semibold">Stock Quantity</label>
+                        <input asp-for="StockQuantity" class="form-control shadow-sm" placeholder="Enter available stock" />
+                        <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Price Per Unit -->
+                    <div class="col-md-6">
+                        <label asp-for="PricePerUnit" class="form-label fw-semibold">Price Per Unit</label>
+                        <input asp-for="PricePerUnit" class="form-control shadow-sm" placeholder="Enter price per unit" />
+                        <span asp-validation-for="PricePerUnit" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Added Date -->
+                    <div class="col-md-6">
+                        <label asp-for="AddedDate" class="form-label fw-semibold">Added Date</label>
+                        <input asp-for="AddedDate" type="date" class="form-control shadow-sm" />
+                        <span asp-validation-for="AddedDate" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="col-md-6">
+                        <label asp-for="Category" class="form-label fw-semibold">Category</label>
+                        <input asp-for="Category" class="form-control shadow-sm" placeholder="Enter category" />
+                        <span asp-validation-for="Category" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Image Path -->
+                    <div class="col-md-6">
+                        <label asp-for="ImagePath" class="form-label fw-semibold">Image Path</label>
+                        <input asp-for="ImagePath" class="form-control shadow-sm" id="ImagePath" readonly />
+                        <span asp-validation-for="ImagePath" class="text-danger small"></span>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Upload Image</label>
+                        <input type="file" name="imageFile" class="form-control shadow-sm" id="featuredImageUpload" accept=".jpg,.jpeg,.png" />
+                        <div class="mt-2">
+                            <img id="previewImage" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 150px;" />
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-6">
+                        <label asp-for="Description" class="form-label fw-semibold">Description / Warnings</label>
+                        <textarea asp-for="Description" class="form-control shadow-sm" rows="4" id="content" placeholder="Enter detailed description or warnings"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Usage Instructions -->
+                    <div class="col-md-6">
+                        <label asp-for="UsageInstructions" class="form-label fw-semibold">Usage Instructions</label>
+                        <textarea asp-for="UsageInstructions" class="form-control shadow-sm" rows="4" placeholder="Enter usage instructions"></textarea>
+                        <span asp-validation-for="UsageInstructions" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success px-4 shadow-sm me-2">
+                        <i class="bi bi-save"></i> Save
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4 shadow-sm">
+                        <i class="bi bi-arrow-left"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 

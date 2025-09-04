@@ -1,115 +1,116 @@
 ﻿@model Patient
 
-<h2 class="mb-4 mx-4">Add New Patient</h2>
 
-<form asp-action="Create" enctype="multipart/form-data" class="mx-4">
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="FullName" class="form-label"></label>
-            <input asp-for="FullName" class="form-control" />
-            <span asp-validation-for="FullName" class="text-danger"></span>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h3 class="mb-0">🧑‍⚕️ Add New Patient</h3>
         </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Gender" class="form-label"></label>
-            <select asp-for="Gender" class="form-control">
-                <option value="">-- Select Gender --</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-            </select>
-            <span asp-validation-for="Gender" class="text-danger"></span>
-        </div>
+        <div class="card-body p-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="row g-4">
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="DateOfBirth" class="form-label"></label>
-            <input asp-for="DateOfBirth" class="form-control" type="date" />
-            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-        </div>
+                    <!-- Full Name -->
+                    <div class="col-md-6">
+                        <label asp-for="FullName" class="form-label fw-semibold">Full Name</label>
+                        <input asp-for="FullName" class="form-control shadow-sm" placeholder="Enter full name" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="BloodGroup" class="form-label"></label>
-            <input asp-for="BloodGroup" class="form-control" />
-            <span asp-validation-for="BloodGroup" class="text-danger"></span>
-        </div>
+                    <!-- Gender -->
+                    <div class="col-md-6">
+                        <label asp-for="Gender" class="form-label fw-semibold mt-4">Gender</label>
+                        <select asp-for="Gender" class="form-select shadow-sm">
+                            <option value="">-- Select Gender --</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger small"></span>
+                    </div>
 
-     
+                    <!-- Date of Birth -->
+                    <div class="col-md-6">
+                        <label asp-for="DateOfBirth" class="form-label fw-semibold">Date of Birth</label>
+                        <input asp-for="DateOfBirth" type="date" class="form-control shadow-sm" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="PhoneNumber" class="form-label"></label>
-            <input asp-for="PhoneNumber" class="form-control" />
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        </div>
+                    <!-- Blood Group -->
+                    <div class="col-md-6">
+                        <label asp-for="BloodGroup" class="form-label fw-semibold">Blood Group</label>
+                        <input asp-for="BloodGroup" class="form-control shadow-sm" placeholder="e.g. A+, O-" />
+                        <span asp-validation-for="BloodGroup" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
+                    <!-- Phone Number -->
+                    <div class="col-md-6">
+                        <label asp-for="PhoneNumber" class="form-label fw-semibold">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control shadow-sm" placeholder="Enter phone number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="ImagePath" class="col-md-6 col-form-label"></label>
-            <div>
-                <input asp-for="ImagePath" id="ImagePath" class="form-control" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
-            </div>
-        </div>
+                    <!-- Email -->
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                        <input asp-for="Email" class="form-control shadow-sm" placeholder="Enter email address" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
 
+                    <!-- Image Path -->
+                    <div class="col-md-6">
+                        <label asp-for="ImagePath" class="form-label fw-semibold">Image Path</label>
+                        <input asp-for="ImagePath" class="form-control shadow-sm" id="ImagePath" readonly />
+                        <span asp-validation-for="ImagePath" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Address" class="form-label"></label>
-            <textarea asp-for="Address" class="form-control"></textarea>
-        </div>
+                    <!-- Feature Image Upload -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Feature Image Upload</label>
+                        <input type="file" class="form-control shadow-sm" id="featuredImageUpload" accept=".jpg,.jpeg,.png" />
+                        <div class="mt-2">
+                            <img id="previewImage" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 150px;" />
+                        </div>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="EmergencyContact" class="form-label"></label>
-            <input asp-for="EmergencyContact" class="form-control" />
-        </div>
+                    <!-- Address -->
+                    <div class="col-md-6">
+                        <label asp-for="Address" class="form-label fw-semibold">Address</label>
+                        <textarea asp-for="Address" class="form-control shadow-sm" rows="3" placeholder="Enter address"></textarea>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label >Feature Image Upload</label>
-            <div> <input type="file" class="form-control" id="featuredImageUpload" /> </div>
-        </div>
+                    <!-- Emergency Contact -->
+                    <div class="col-md-6">
+                        <label asp-for="EmergencyContact" class="form-label fw-semibold">Emergency Contact</label>
+                        <input asp-for="EmergencyContact" class="form-control shadow-sm" placeholder="Enter emergency contact number" />
+                    </div>
 
-        <div class="col-md-12 mb-3">
-            <label asp-for="Description" class="form-label" ></label>
-            <textarea asp-for="Description" class="form-control" id="content"></textarea>
+                    <!-- Description -->
+                    <div class="col-md-12">
+                        <label asp-for="Description" class="form-label fw-semibold">Description / Notes</label>
+                        <textarea asp-for="Description" class="form-control shadow-sm" rows="4" id="content" placeholder="Additional notes or health info"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary px-4 shadow-sm me-2">
+                        <i class="bi bi-save"></i> Save
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4 shadow-sm">
+                        <i class="bi bi-arrow-left"></i> Cancel
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-</form>
+</div>
 
 
-@* @section Scripts {
-    <script>
-        // let editor = new FroalaEditor("#content");
-         let featureUploadElement = document.getElementById("featuredImageUpload");
-         let FeaturedImageUrlElement = document.getElementById("ImagePath");
 
-          async function featureImageUpload(e){
-             console.log(e.target.files[0])
-             let data = new FormData();
-             data.append("file",e.target.files[0])
-             fetch("/api/images",{
-                 method:"POST",
-                 headers:{
-                     "Aceept":"*/*"
-                 },
-                 body:data
-             }).then(res=>res.json())
-             .then(result=>{
-                 console.log(result)
-                 FeaturedImageUrlElement.value=result.link.result
-             })
-         }
 
-         featureUploadElement.addEventListener('change', featureImageUpload)
-
-    </script>
-}
- *@
 
 
 

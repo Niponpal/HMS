@@ -1,114 +1,141 @@
 ﻿@model Admission
 
-<h2 class="mb-4 mx-4"> Admission Form Modify</h2>
-
-<form asp-action="Edit" enctype="multipart/form-data" class="mx-4">
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="AdmitDate" class="form-label"></label>
-            <input asp-for="AdmitDate" class="form-control" type="date" />
-            <span asp-validation-for="AdmitDate" class="text-danger"></span>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h4 class="mb-0 fw-bold">✏️ Modify Admission Form</h4>
         </div>
+        <div class="card-body p-4">
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="DischargeDate" class="form-label"></label>
-            <input asp-for="DischargeDate" class="form-control" type="date" />
-            <span asp-validation-for="DischargeDate" class="text-danger"></span>
-        </div>
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="row g-4">
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Diagnosis" class="form-label"></label>
-            <input asp-for="Diagnosis" class="form-control" />
-            <span asp-validation-for="Diagnosis" class="text-danger"></span>
-        </div>
+                    <!-- Admit Date -->
+                    <div class="col-md-6">
+                        <label asp-for="AdmitDate" class="form-label fw-semibold"></label>
+                        <input asp-for="AdmitDate" class="form-control" type="date" />
+                        <span asp-validation-for="AdmitDate" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="TreatmentPlan" class="form-label"></label>
-            <input asp-for="TreatmentPlan" class="form-control" />
-            <span asp-validation-for="TreatmentPlan" class="text-danger"></span>
-        </div>
+                    <!-- Discharge Date -->
+                    <div class="col-md-6">
+                        <label asp-for="DischargeDate" class="form-label fw-semibold"></label>
+                        <input asp-for="DischargeDate" class="form-control" type="date" />
+                        <span asp-validation-for="DischargeDate" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <select asp-for="HospitalRoomId" class="form-control" asp-items="@(ViewBag.HospitalRoomId)">
-                <option value="">Select Hospital Room</option>
-            </select>
-        </div>
+                    <!-- Diagnosis -->
+                    <div class="col-md-6">
+                        <label asp-for="Diagnosis" class="form-label fw-semibold"></label>
+                        <input asp-for="Diagnosis" class="form-control" placeholder="Enter diagnosis" />
+                        <span asp-validation-for="Diagnosis" class="text-danger small"></span>
+                    </div>
 
+                    <!-- Treatment Plan -->
+                    <div class="col-md-6">
+                        <label asp-for="TreatmentPlan" class="form-label fw-semibold"></label>
+                        <input asp-for="TreatmentPlan" class="form-control" placeholder="Enter treatment plan" />
+                        <span asp-validation-for="TreatmentPlan" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="AdvancePayment" class="form-label"></label>
-            <input asp-for="AdvancePayment" class="form-control" type="number" step="0.01" />
-            <span asp-validation-for="AdvancePayment" class="text-danger"></span>
-        </div>
+                    <!-- Hospital Room -->
+                    <div class="col-md-6 mt-5">
+                        <label asp-for="HospitalRoomId" class="form-label fw-semibold">Hospital Room</label>
+                        <select asp-for="HospitalRoomId" class="form-select" asp-items="@(ViewBag.HospitalRoomId)">
+                            <option value="">-- Select Hospital Room --</option>
+                        </select>
+                        <span asp-validation-for="HospitalRoomId" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="DischargeStatus" class="form-label"></label>
-            <input asp-for="DischargeStatus" class="form-control" />
-            <span asp-validation-for="DischargeStatus" class="text-danger"></span>
-        </div>
+                    <!-- Advance Payment -->
+                    <div class="col-md-6">
+                        <label asp-for="AdvancePayment" class="form-label fw-semibold"></label>
+                        <input asp-for="AdvancePayment" class="form-control" type="number" step="0.01" placeholder="Enter amount" />
+                        <span asp-validation-for="AdvancePayment" class="text-danger small"></span>
+                    </div>
 
+                    <!-- Discharge Status -->
+                    <div class="col-md-6">
+                        <label asp-for="DischargeStatus" class="form-label fw-semibold"></label>
+                        <input asp-for="DischargeStatus" class="form-control" placeholder="Enter status" />
+                        <span asp-validation-for="DischargeStatus" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Upload Report </label>
-            <input class="form-control" type="file" name="file" id="featuredImageUpload" />
-        </div>
-        <div class="col-md-6 mb-3">
-            <label asp-for="ImagePath" class="form-label">Upload Report (PDF or Image)</label>
-            <input asp-for="ImagePath" class="form-control" type="text" />
-        </div>
+                    <!-- Upload Report -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Upload Report</label>
+                        <input class="form-control" type="file" name="file" id="featuredImageUpload" accept=".jpg,.png,.pdf" />
+                        <div class="form-text">Allowed formats: JPG, PNG, PDF</div>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control" rows="3" id="content"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                    <!-- Report File Path -->
+                    <div class="col-md-12">
+                        <label asp-for="ImagePath" class="form-label fw-semibold"></label>
+                        <input asp-for="ImagePath" class="form-control" type="text" placeholder="File URL will appear here" readonly />
+                    </div>
 
+                    <!-- Description -->
+                    <div class="col-md-6">
+                        <label asp-for="Description" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3" id="descriptionEditor" placeholder="Enter details"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
 
-        <div class="col-md-6 mb-3">
-            <label asp-for="DoctorRemarks" class="form-label"></label>
-            <textarea asp-for="DoctorRemarks" class="form-control" rows="3" id="content"></textarea>
-            <span asp-validation-for="DoctorRemarks" class="text-danger"></span>
-        </div>
+                    <!-- Doctor Remarks -->
+                    <div class="col-md-6">
+                        <label asp-for="DoctorRemarks" class="form-label fw-semibold"></label>
+                        <textarea asp-for="DoctorRemarks" class="form-control" rows="3" id="remarksEditor" placeholder="Enter doctor's remarks"></textarea>
+                        <span asp-validation-for="DoctorRemarks" class="text-danger small"></span>
+                    </div>
 
-        <input type="hidden" asp-for="CreatedAt" value="@DateTime.Now" />
+                    <input type="hidden" asp-for="CreatedAt" value="@DateTime.Now" />
 
-        <div class="col-12 mt-3">
-            <button type="submit" class="btn btn-primary">Submit Admission</button>
-            <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+                    <!-- Action Buttons -->
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-success px-5">
+                            💾 Update Admission
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary px-5 ms-2">
+                            ⬅ Back to List
+                        </a>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
-</form>
-
+</div>
 
 @section Scripts {
     <script>
-            let editor = new FroalaEditor("#content");
+        // Froala Editors
+        let descEditor = new FroalaEditor("#descriptionEditor");
+        let remarksEditor = new FroalaEditor("#remarksEditor");
+
+        // File Upload
         let featureUploadElement = document.getElementById("featuredImageUpload");
         let FeaturedImageUrlElement = document.getElementById("ImagePath");
 
         async function featureImageUpload(e) {
-          let file = e.target.files[0];
-          if (!file) return;
+            let file = e.target.files[0];
+            if (!file) return;
 
-          let data = new FormData();
-          data.append("file", file);
+            let data = new FormData();
+            data.append("file", file);
 
-          fetch("/api/images", {
-            method: "POST",
-            headers: {
-              "Accept": "*/*"
-            },
-            body: data
-          })
-          .then(res => res.json())
-          .then(result => {
-            console.log(result);
-            FeaturedImageUrlElement.value = result.link;  // Correct usage here
-          })
-          .catch(err => {
-            console.error("Upload error:", err);
-            alert("Image upload failed. Please try again.");
-          });
+            fetch("/api/images", {
+                method: "POST",
+                headers: { "Accept": "*/*" },
+                body: data
+            })
+            .then(res => res.json())
+            .then(result => {
+                FeaturedImageUrlElement.value = result.link;
+            })
+            .catch(err => {
+                console.error("Upload error:", err);
+                alert("File upload failed. Please try again.");
+            });
         }
 
         featureUploadElement.addEventListener("change", featureImageUpload);

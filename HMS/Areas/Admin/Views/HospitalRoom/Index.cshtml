@@ -22,7 +22,7 @@
                     <th>OccupiedBeds</th>
                     <th>Description</th>
                     <th>LastUpdated</th>
-                    <th>ImagePath</th>
+                    <th>Images</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -40,7 +40,20 @@
                         <td>@item.OccupiedBeds</td>
                         <td>@item.Description</td>
                         <td>@item.LastUpdated</td>
-                        <td>@item.ImagePath</td>
+                        <td class="text-center">
+                            @if (!string.IsNullOrWhiteSpace(item.ImagePath))
+                            {
+                                <img src="@item.ImagePath"
+                                     alt="@item.RoomType"
+                                     class="rounded shadow-sm"
+                                     width="60" height="60"
+                                     style="object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">No Image</span>
+                            }
+                        </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Details</a>

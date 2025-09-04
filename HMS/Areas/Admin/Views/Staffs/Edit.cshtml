@@ -1,102 +1,128 @@
 ﻿@model Staff
 
-<div class=" mt-5 mx-4">
-    <h2 class="mb-4">Edit Staff</h2>
-
-    <form asp-action="Edit" method="post" enctype="multipart/form-data" class="mx-4">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label asp-for="FullName" class="form-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Role" class="form-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="PhoneNumber" class="form-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="JoiningDate" class="form-label"></label>
-                <input asp-for="JoiningDate" class="form-control" type="date" />
-                <span asp-validation-for="JoiningDate" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Shift" class="form-label"></label>
-                <select asp-for="Shift" class="form-select">
-                    <option value="">-- Select Shift --</option>
-                    <option>Morning</option>
-                    <option>Evening</option>
-                    <option>Night</option>
-                </select>
-                <span asp-validation-for="Shift" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Gender" class="form-label"></label>
-                <select asp-for="Gender" class="form-select">
-                    <option value="">-- Select Gender --</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                </select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Status" class="form-label"></label>
-                <select asp-for="Status" class="form-select">
-                    <option value="">-- Select Status --</option>
-                    <option>Active</option>
-                    <option>Inactive</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="col-md-6">
-                <label>Images URl</label>
-                <input asp-for="ImagePath" type="file" class="form-control" id="featuredImageUpload" />
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="ImagePath" class="form-label">Upload Photo</label>
-                <input asp-for="ImagePath" type="text" class="form-control" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Address" class="form-label"></label>
-                <textarea asp-for="Address" class="form-control" rows="3" id="content"></textarea>
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Description" class="form-label"></label>
-                <textarea asp-for="Description" class="form-control" rows="3" id="content"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-
-
-
-            <div class="col-md-12 text-end">
-                <button type="submit" class="btn btn-success mt-3">Save</button>
-                <a asp-action="Index" class="btn btn-secondary mt-3 ms-2">Cancel</a>
-            </div>
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h3 class="mb-0">👨‍💼 Modify Staff</h3>
         </div>
-    </form>
+
+        <div class="card-body p-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="row g-4">
+
+                    <!-- Full Name -->
+                    <div class="col-md-6">
+                        <label asp-for="FullName" class="form-label fw-semibold">Full Name</label>
+                        <input asp-for="FullName" class="form-control shadow-sm" placeholder="Enter full name" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Role -->
+                    <div class="col-md-6">
+                        <label asp-for="Role" class="form-label fw-semibold">Role</label>
+                        <input asp-for="Role" class="form-control shadow-sm" placeholder="e.g., Nurse, Receptionist" />
+                        <span asp-validation-for="Role" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="col-md-6">
+                        <label asp-for="PhoneNumber" class="form-label fw-semibold">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control shadow-sm" placeholder="Enter phone number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                        <input asp-for="Email" class="form-control shadow-sm" placeholder="Enter email address" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Joining Date -->
+                    <div class="col-md-6">
+                        <label asp-for="JoiningDate" class="form-label fw-semibold">Joining Date</label>
+                        <input asp-for="JoiningDate" type="date" class="form-control shadow-sm" />
+                        <span asp-validation-for="JoiningDate" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Shift -->
+                    <div class="col-md-6 mt-4">
+                        <label asp-for="Shift" class="form-label fw-semibold">Shift</label>
+                        <select asp-for="Shift" class="form-select shadow-sm">
+                            <option value="">-- Select Shift --</option>
+                            <option>Morning</option>
+                            <option>Evening</option>
+                            <option>Night</option>
+                        </select>
+                        <span asp-validation-for="Shift" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="col-md-6 mt-4 mb-4">
+                        <label asp-for="Gender" class="form-label fw-semibold">Gender</label>
+                        <select asp-for="Gender" class="form-select shadow-sm">
+                            <option value="">-- Select Gender --</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-md-6 mt-4">
+                        <label asp-for="Status" class="form-label fw-semibold">Status</label>
+                        <select asp-for="Status" class="form-select shadow-sm">
+                            <option value="">-- Select Status --</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Upload Photo</label>
+                        <input type="file" class="form-control shadow-sm" id="featuredImageUpload" accept=".jpg,.jpeg,.png" />
+                        <div class="mt-2">
+                            <img id="previewImage" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 150px;" />
+                        </div>
+                    </div>
+
+                    <!-- Image Path -->
+                    <div class="col-md-6">
+                        <label asp-for="ImagePath" class="form-label fw-semibold">Image URL</label>
+                        <input asp-for="ImagePath" class="form-control shadow-sm" id="ImagePath" readonly />
+                        <span asp-validation-for="ImagePath" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="col-md-6">
+                        <label asp-for="Address" class="form-label fw-semibold">Address</label>
+                        <textarea asp-for="Address" class="form-control shadow-sm" rows="3" placeholder="Enter address"></textarea>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-6">
+                        <label asp-for="Description" class="form-label fw-semibold">Description / Notes</label>
+                        <textarea asp-for="Description" class="form-control shadow-sm" rows="3" id="content" placeholder="Additional notes"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-success px-4 shadow-sm me-2">
+                            <i class="bi bi-save"></i> Save
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary px-4 shadow-sm">
+                            <i class="bi bi-arrow-left"></i> Cancel
+                        </a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 

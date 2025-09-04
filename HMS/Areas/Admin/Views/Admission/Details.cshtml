@@ -1,72 +1,81 @@
 ﻿@model Admission
 
-
-<h2 class="mb-4 mx-4">Admission Details</h2>
-
-<div class="card shadow-sm">
-    <div class="card-body">
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Admit Date:</div>
-            <div class="col-md-8">@Model.AdmitDate.ToString("dd MMM yyyy")</div>
+<div class="container my-5">
+    <div class="card shadow-lg rounded-3">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h3 class="mb-0">🏥 Admission Details</h3>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Discharge Date:</div>
-            <div class="col-md-8">@Model.DischargeDate?.ToString("dd MMM yyyy") ?? "N/A"</div>
-        </div>
+        <div class="card-body p-4">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <h6 class="text-muted">📅 Admit Date</h6>
+                    <p class="fw-semibold">@Model.AdmitDate.ToString("dd MMM yyyy")</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Diagnosis:</div>
-            <div class="col-md-8">@Model.Diagnosis</div>
-        </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">🏁 Discharge Date</h6>
+                    <p>@Model.DischargeDate?.ToString("dd MMM yyyy") ?? "N/A"</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Treatment Plan:</div>
-            <div class="col-md-8">@Model.TreatmentPlan</div>
-        </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">🔬 Diagnosis</h6>
+                    <p>@Model.Diagnosis</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Advance Payment:</div>
-            <div class="col-md-8">@Model.AdvancePayment.ToString("C")</div>
-        </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">📝 Treatment Plan</h6>
+                    <p>@Model.TreatmentPlan</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Discharge Status:</div>
-            <div class="col-md-8">@Model.DischargeStatus</div>
-        </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">💰 Advance Payment</h6>
+                    <p>@Model.AdvancePayment.ToString("C")</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Doctor Remarks:</div>
-            <div class="col-md-8">@Model.DoctorRemarks</div>
-        </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">📌 Discharge Status</h6>
+                    <p>@Model.DischargeStatus</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Created At:</div>
-            <div class="col-md-8">@Model.CreatedAt.ToString("g")</div>
-        </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted">🩺 Doctor Remarks</h6>
+                    <p>@Model.DoctorRemarks</p>
+                </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Test Report:</div>
-            <div class="col-md-8">
-                @if (!string.IsNullOrEmpty(Model.ImagePath))
-                {
-                    <a href="@Url.Content(Model.ImagePath)" target="_blank">View Report</a>
-                }
-                else
-                {
-                    <span class="text-muted">No file uploaded</span>
-                }
+                <div class="col-md-6">
+                    <h6 class="text-muted">🕒 Created At</h6>
+                    <p>@Model.CreatedAt.ToString("g")</p>
+                </div>
+
+                <div class="col-md-12">
+                    <h6 class="text-muted">📄 Test Report</h6>
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <a href="@Url.Content(Model.ImagePath)" target="_blank" class="btn btn-outline-primary btn-sm">
+                            View Report
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">No file uploaded</span>
+                    }
+                </div>
+
+                <div class="col-md-12">
+                    <h6 class="text-muted">📝 Description</h6>
+                    <p>@Model.Description</p>
+                </div>
             </div>
-        </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4 fw-bold">Description:</div>
-            <div class="col-md-8">@Model.Description</div>
-        </div>
-
-        <div class="mt-4">
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-            <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+            <div class="text-end mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4 me-2">
+                    ✏️ Edit
+                </a>
+                <a asp-action="Index" class="btn btn-secondary px-4">
+                    🔙 Back to List
+                </a>
+            </div>
         </div>
     </div>
 </div>

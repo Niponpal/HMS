@@ -20,7 +20,7 @@
                     <th>Test Results</th>
                     <th>Next Visit Suggestion</th>
                     <th>Created At</th>
-                    <th>Image Path</th>
+                    <th>Images </th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
@@ -38,7 +38,20 @@
                         <td>@item.TestResults</td>
                         <td>@item.NextVisitSuggestion</td>
                         <td>@item.CreatedAt.ToString("g")</td>
-                        <td>@item.ImagePath</td>
+                        <td class="text-center">
+                            @if (!string.IsNullOrWhiteSpace(item.ImagePath))
+                            {
+                                <img src="@item.ImagePath"
+                                     alt="@item.Symptoms"
+                                     class="rounded shadow-sm"
+                                     width="60" height="60"
+                                     style="object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">No Image</span>
+                            }
+                        </td>
                         <td>@item.Description</td>
                         <td>
                             <div class="btn-group" role="group">
