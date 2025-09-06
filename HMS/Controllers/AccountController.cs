@@ -66,7 +66,7 @@ namespace HMS.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(loginViewModel);
+                return RedirectToAction("AccessDenied");
             }
 
             var signInResult = await _signInManager.PasswordSignInAsync(

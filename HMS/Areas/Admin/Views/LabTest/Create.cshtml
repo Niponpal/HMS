@@ -33,9 +33,9 @@
 
                     <!-- Patient Select -->
                     <div class="col-md-6 mt-4">
-                        <label asp-for="PatientId" class="form-label fw-semibold">Select Patient</label>
-                        <select asp-for="PatientId" class="form-select shadow-sm" asp-items="@(ViewBag.PatientId)">
-                            <option value="">-- Select Patient Email --</option>
+                        <label asp-for="TestName" class="form-label fw-semibold">Select Patient</label>
+                        <select asp-for="TestName" class="form-select shadow-sm" asp-items="@(ViewBag.PatientId)">
+                            <option value="">-- Select Patient Test Name --</option>
                         </select>
                         <span asp-validation-for="PatientId" class="text-danger small"></span>
                     </div>

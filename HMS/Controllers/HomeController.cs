@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 using HMS.Models;
+using HMS.Repositorys;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HMS.Controllers
@@ -8,14 +10,20 @@ namespace HMS.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IDoctorRepository _doctorRepository;
+
+        public HomeController(ILogger<HomeController> logger, IDoctorRepository doctorRepository)
         {
             _logger = logger;
+            _doctorRepository = doctorRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Doctor> data = new List<Doctor>();
+            data = (List<Doctor>) _doctorRepository.GetAllData();
+            return View(data);
+            
         }
 
         public IActionResult Privacy()
