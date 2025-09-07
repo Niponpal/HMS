@@ -34,9 +34,9 @@ namespace HMS.Repositorys
         // returns all patients
         public IEnumerable<SelectListItem> Dropdown()
         {
-            var data = _context.LabTests.Select(x => new SelectListItem
+            var data = _context.Patients.Select(x => new SelectListItem
             {
-                Text = x.TestName,
+                Text = x.Email,
                 Value = x.Id.ToString()
             }).ToList();
             return data;
@@ -44,9 +44,9 @@ namespace HMS.Repositorys
 
         public IEnumerable<SelectListItem> DropdownMedical()
         {
-            var data = _context.MedicalRecords.Select(x => new SelectListItem
+            var data = _context.Patients.Select(x => new SelectListItem
             {
-                Text = x.Diagnosis,
+                Text = x.FullName,
                 Value = x.Id.ToString()
             }).ToList();
             return data;
